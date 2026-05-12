@@ -34,31 +34,21 @@ export default function Main() {
     return (
         <main>
             <div className="form">
-                <label>Top Text
+                <label>Pokemon
                     <input
                         type="text"
-                        placeholder="One does not simply"
+                        placeholder="Loading..."
                         name="topText"
                         onChange={handleChange}
                         value={meme.topText}
                     />
                 </label>
-
-                <label>Bottom Text
-                    <input
-                        type="text"
-                        placeholder="Walk into Mordor"
-                        name="bottomText"
-                        onChange={handleChange}
-                        value={meme.bottomText}
-                    />
-                </label>
-                <button onClick={getMemeImage}>Get a new meme image 🖼</button>
+                <button onClick={getMemeImage}>Search Pokedex</button>
             </div>
-            <div className="meme">
-                <img src={meme.imageUrl} />
-                <span className="top">{meme.topText}</span>
-                <span className="bottom">{meme.bottomText}</span>
+            <div>
+                <item/>
+                <text/>
+                <text/>
             </div>
         </main>
     )
