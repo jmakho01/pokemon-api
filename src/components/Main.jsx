@@ -38,7 +38,7 @@ export default function Main() {
                     <input
                         type="text"
                         placeholder="Loading..."
-                        name="topText"
+                        name="PokeText"
                         onChange={handleChange}
                         value={meme.topText}
                     />
@@ -46,9 +46,9 @@ export default function Main() {
                 <button onClick={getMemeImage}>Search Pokedex</button>
             </div>
             <div>
-                <item/>
-                <text/>
-                <text/>
+                <item />
+                <text />
+                <text />
             </div>
         </main>
     )
