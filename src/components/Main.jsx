@@ -1,32 +1,43 @@
 import { useState, useEffect } from "react"
 
 export default function Main() {
-    const [meme, setMeme] = useState({
-        topText: "One does not simply",
-        bottomText: "Walk into Mordor",
-        imageUrl: "http://i.imgflip.com/1bij.jpg"
+    const [pokemon, setPokemon] = useState({
+        name: "",
+        imageUrl: "",
     })
-    const [allMemes, setAllMemes] = useState([])
-    
+
     useEffect(() => {
-        fetch("https://api.imgflip.com/get_memes")
+        fetch("https://pokeapi.co/api/v2/pokemon/132")
             .then(res => res.json())
-            .then(data => setAllMemes(data.data.memes))
+            .then(data => {
+                setPokemon(prev => ({
+                    ...prev,
+                    name: data.name,
+                    imageUrl: data.sprites.front_default
+                }))
+            })
+            .catch(err => console.error(err))
     }, [])
-    
-    function getMemeImage() {
-        const randomNumber = Math.floor(Math.random() * allMemes.length)
-        const newMemeUrl = allMemes[randomNumber].url
-        setMeme(prevMeme => ({
-            ...prevMeme,
-            imageUrl: newMemeUrl
-        }))
+
+    function getRandomPokemon() {
+        const randomId = Math.floor(Math.random() * 151) + 1
+
+        fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`)
+            .then(res => res.json())
+            .then(data => {
+                setPokemon(prev => ({
+                    ...prev,
+                    name: data.name,
+                    imageUrl: data.sprites.front_default
+                }))
+            })
     }
-    
+
     function handleChange(event) {
-        const {value, name} = event.currentTarget
-        setMeme(prevMeme => ({
-            ...prevMeme,
+        const { value, name } = event.target
+
+        setPokemon(prevPokemon => ({
+            ...prevPokemon,
             [name]: value
         }))
     }
@@ -34,21 +45,28 @@ export default function Main() {
     return (
         <main>
             <div className="form">
-                <label>Pokemon
+                <label>
+                    Pokemon
                     <input
                         type="text"
-                        placeholder="Loading..."
-                        name="PokeText"
+                        name="TopText"
                         onChange={handleChange}
-                        value={meme.topText}
+                        value={pokemon.topText}
                     />
                 </label>
-                <button onClick={getMemeImage}>Search Pokedex</button>
+
+                <button onClick={getRandomPokemon}>Search Pokedex</button>
             </div>
-            <div>
-                <item />
-                <text />
-                <text />
+
+            <div className="meme">
+                <h2>{pokemon.name}</h2>
+
+                {pokemon.imageUrl && (
+                    <img
+                        src={pokemon.imageUrl}
+                        alt={pokemon.name}
+                    />
+                )}
             </div>
         </main>
     )
