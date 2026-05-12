@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import Pokemon from "./Pokemon"
 
 export default function Main() {
     const [pokemon, setPokemon] = useState({
@@ -57,17 +58,7 @@ export default function Main() {
 
                 <button onClick={getRandomPokemon}>Search Pokedex</button>
             </div>
-
-            <div className="meme">
-                <h2>{pokemon.name}</h2>
-
-                {pokemon.imageUrl && (
-                    <img
-                        src={pokemon.imageUrl}
-                        alt={pokemon.name}
-                    />
-                )}
-            </div>
+            <Pokemon {...pokemon} />
         </main>
     )
 }
