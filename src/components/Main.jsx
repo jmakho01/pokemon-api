@@ -5,6 +5,8 @@ export default function Main() {
     const [pokemon, setPokemon] = useState({
         name: "",
         imageUrl: "",
+        height: "",
+        weight: "",
     })
 
     useEffect(() => {
@@ -14,7 +16,10 @@ export default function Main() {
                 setPokemon(prev => ({
                     ...prev,
                     name: data.name,
-                    imageUrl: data.sprites.front_default
+                    imageUrl: data.sprites.front_default,
+                    height: data.height,
+                    weight: data.weight
+
                 }))
             })
             .catch(err => console.error(err))
@@ -29,7 +34,9 @@ export default function Main() {
                 setPokemon(prev => ({
                     ...prev,
                     name: data.name,
-                    imageUrl: data.sprites.front_default
+                    imageUrl: data.sprites.front_default,
+                    height: data.height,
+                    weight: data.weight
                 }))
             })
     }
