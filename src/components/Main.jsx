@@ -21,7 +21,7 @@ export default function Main() {
     }, [])
 
     function getRandomPokemon() {
-        const randomId = Math.floor(Math.random() * 151) + 1
+        const randomId = Math.floor(Math.random() * 1025) + 1
 
         fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`)
             .then(res => res.json())
