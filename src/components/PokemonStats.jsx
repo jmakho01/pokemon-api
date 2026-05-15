@@ -6,10 +6,7 @@ export default function PokemonStats({ height, weight, types }) {
 
             <div className="types">
                 {types.map(type => (
-                    <span 
-                        key={type} 
-                        className={`type ${type}`}
-                    >
+                    <span key={type} className={`type ${type}`}>
                         {type}
                     </span>
                 ))}
