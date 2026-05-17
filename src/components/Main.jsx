@@ -30,12 +30,17 @@ export default function Main() {
             if(!res.ok) throw new Error("Pokemon not found")
 
             const data = await res.json()
+
+            const speciesRes = await fetch(data.species.url)
+            const speciesData = await speciesRes.json()
+
             const formattedPokemon = {
                 id: data.id,
                 name: data.name,
                 image: data.sprites.front_default,
                 height: data.height,
                 weight: data.weight,
+                generation: speciesData.generation.name,
                 types: data.types?.map(type => type.type.name)
             }
 

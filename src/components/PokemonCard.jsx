@@ -16,6 +16,7 @@ export default function PokemonCard({ pokemon }) {
                     height={pokemon.height}
                     weight={pokemon.weight}
                     types={pokemon.types}
+                    generation={pokemon.generation}
                 />
             </div>
         </div>
